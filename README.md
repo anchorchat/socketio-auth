@@ -79,7 +79,7 @@ function postAuthenticate(io, socket, data) {
 * `disconnect`: a function to be called after the client is disconnected.
 
 ```javascript
-function disconnect(socket) {
+function disconnect(io, socket, reason) {
   console.log(socket.id + ' disconnected');
 }
 ```

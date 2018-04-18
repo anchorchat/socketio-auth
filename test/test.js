@@ -207,7 +207,7 @@ describe('Server socket disconnect', function() {
     server = new ServerSocketMock();
     client = new ClientSocketMock(5);
 
-    var discon = function(io, socket) {
+    var disconnect = function(io, socket) {
       assert.equal(socket, client);
       done();
     };
@@ -215,7 +215,7 @@ describe('Server socket disconnect', function() {
     require('../lib/socketio-auth')(server, {
       timeout:80,
       authenticate: authenticate,
-      disconnect: discon
+      disconnect: disconnect
     });
 
     server.connect('/User', client);

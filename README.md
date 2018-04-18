@@ -55,7 +55,7 @@ The supported parameters are:
 * `authenticate`: The only required parameter. It's a function that takes the data sent by the client and calls a callback indicating if authentication was successfull:
 
 ```javascript
-function authenticate(socket, data, callback) {
+function authenticate(io, socket, data, callback) {
   var username = data.username;
   var password = data.password;
 
@@ -68,7 +68,7 @@ function authenticate(socket, data, callback) {
 * `postAuthenticate`: a function to be called after the client is authenticated. It's useful to keep track of the user associated with a client socket:
 
 ```javascript
-function postAuthenticate(socket, data) {
+function postAuthenticate(io, socket, data) {
   var username = data.username;
 
   db.findUser('User', {username:username}, function(err, user) {
@@ -84,7 +84,7 @@ function disconnect(socket) {
 }
 ```
 
-* `timeout`: The amount of millisenconds to wait for a client to authenticate before disconnecting it. Defaults to 1000. The value 'none' disables the timeout feature.
+* `timeout`: The amount of milliseconds to wait for a client to authenticate before disconnecting it. Defaults to 1000. The value 'none' disables the timeout feature.
 
 ## Auth error messages
 
@@ -100,7 +100,7 @@ socket.on('unauthorized', function(err){
 The value of `err.message` depends on the outcome of the `authenticate` function used in the server: if the callback receives an error its message is used, if the success parameter is false the message is `'Authentication failure'`
 
 ```javascript
-function authenticate(socket, data, callback) {
+function authenticate(io, socket, data, callback) {
   db.findUser('User', {username:data.username}, function(err, user) {
     if (err || !user) {
       //err.message will be "User not found"

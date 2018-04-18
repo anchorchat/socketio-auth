@@ -51,7 +51,7 @@ ClientSocketMock.prototype.disconnect = function() {
   this.emit('disconnect');
 };
 
-function authenticate(socket, data, cb) {
+function authenticate(io, socket, data, cb) {
   if (!data.token) {
     cb(new Error('Missing credentials'));
   }
@@ -113,7 +113,7 @@ describe('Server socket authentication', function() {
     server = new ServerSocketMock();
     client = new ClientSocketMock(5);
 
-    var postAuth = function(socket, tokenData) {
+    var postAuth = function(io, socket, tokenData) {
       assert.equal(tokenData.token, 'fixedtoken');
       assert.equal(socket, client);
       done();
@@ -203,11 +203,11 @@ describe('Server socket disconnect', function() {
   var server;
   var client;
 
-  it('Should call discon function', function(done) {
+  it('Should call disconnect function', function(done) {
     server = new ServerSocketMock();
     client = new ClientSocketMock(5);
 
-    var discon = function(socket) {
+    var disconnect = function(io, socket) {
       assert.equal(socket, client);
       done();
     };
@@ -215,7 +215,7 @@ describe('Server socket disconnect', function() {
     require('../lib/socketio-auth')(server, {
       timeout:80,
       authenticate: authenticate,
-      disconnect: discon
+      disconnect: disconnect
     });
 
     server.connect('/User', client);

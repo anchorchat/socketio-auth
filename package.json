@@ -1,5 +1,5 @@
 {
-  "name": "socketio-auth",
+  "name": "@anchorchat/socketio-auth",
   "version": "1.0.0",
   "description": "Authentication for socket.io",
   "main": "index.js",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/facundoolano/socketio-auth"
+    "url": "https://github.com/anchorchat/socketio-auth"
   },
   "keywords": [
     "socket",
@@ -27,9 +27,9 @@
   "author": "Facundo Olano and Martín Paulucci",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/facundoolano/socketio-auth/issues"
+    "url": "https://github.com/anchorchat/socketio-auth/issues"
   },
-  "homepage": "https://github.com/facundoolano/socketio-auth",
+  "homepage": "https://github.com/anchorchat/socketio-auth",
   "dependencies": {
     "debug": "^2.1.3",
     "lodash": "^3.8.0"
